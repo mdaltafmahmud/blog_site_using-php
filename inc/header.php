@@ -47,27 +47,26 @@ $(window).load(function() {
 
 <style> 
 .pagination{
-display:block;
-font-size: 20px;
-margin-top: 10px;
-text-align: center;
-padding:10px;
+	display:block;
+	font-size: 20px;
+	margin-top: 10px;
+	text-align: center;
+	padding:10px;
 }
 
 .pagination a{
-background: #e6a54b none repeat scroll 0 0;
-text-decoration:none;
-border:1px solid #a7700c;
-color:#333;
-margin-left:2px;
-padding:2px 10px;
+	background: #e6a54b none repeat scroll 0 0;
+	text-decoration:none;
+	border:1px solid #a7700c;
+	color:#333;
+	margin-left:2px;
+	padding:2px 10px;
 
 }
 
 .pagination a:hover{
-
-background:#be2723;
-color:white;
+	background:#be2723;
+	color:white;
 }
 
 </style>
@@ -92,19 +91,32 @@ color:white;
 
 
 			<div class="searchbtn clear">
-			<form action="search.php" method="get">
-				<input type="text" name="search" placeholder="Search keyword..."/>
-				<input type="submit" name="submit" value="Search"/>
-			</form>
+				<form action="search.php" method="get">
+					<input type="text" name="search" placeholder="Search keyword..."/>
+					<input type="submit" name="submit" value="Search"/>
+				</form>
 			</div>
-
-
 		</div>
 	</div>
-<div class="navsection templete">
-	<ul>
-		<li><a id="active" href="index.php">Home</a></li>
-		<li><a href="about.php">About</a></li>	
-		<li><a href="contact.php">Contact</a></li>
-	</ul>
-</div>
+	<div class="navsection templete">
+		<ul>
+			<li><a id="active" href="index.php">Home</a></li>
+			<li><a href="about.php">About</a></li>	
+			<li><a href="contact.php">Contact</a></li>
+		</ul>
+	</div>
+
+
+<?php 
+  function pagination($total_pages){
+	    $output  = "";
+		$output .= "<span class='pagination' > <a href ='index.php?page=1'>".'First Page'."</a>";
+		for($i=1; $i<=$total_pages; $i++) { 
+			$output .= "<a href='index.php?page=".$i."'>".$i."</a>";
+		};
+		$output .="<a href='index.php?page=$total_pages'>".'Last Page'."</a></span>";
+
+		return $output;
+  }
+
+?>

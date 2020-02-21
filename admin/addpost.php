@@ -9,6 +9,7 @@
         <?php 
         if ($_SERVER ['REQUEST_METHOD']== 'POST') {
            $title  = mysqli_real_escape_string($db->link, $_POST['title']);
+           $cat = mysqli_real_escape_string($db->link, $_POST['author']);
            $body   = mysqli_real_escape_string($db->link, $_POST['body' ]);
            $tags   = mysqli_real_escape_string($db->link, $_POST['tags' ]);
            $author = mysqli_real_escape_string($db->link, $_POST['author']);
@@ -31,21 +32,21 @@
            } elseif (in_array($file_ext, $permited) === false) {
             echo "<span class='error'>You can upload only:-".implode(', ', $permited)."</span>";
            } else{
-           move_uploaded_file($file_temp, $uploaded_image);
-           $query = "INSERT INTO tbl_post (cat,title,body,image,author,tags)VALUES('cat','$title','$body','$uploaded_image','$author','$tags')";
-           $inserted_rows = $db->insert($query);
-           if ($inserted_rows) {
-            echo "<span class='success'>Post Inserted Successfully.
-            </span>";
-           }else {
-            echo "<span class='error'>Post Not Inserted !</span>";
-           }
+                move_uploaded_file($file_temp,$uploaded_image);
+                $query = "INSERT INTO tbl_post (cat,title,body,image,author,tags)VALUES('$cat','$title','$body','$uploaded_image','$author','$tags')";
+                $inserted_rows = $db->insert($query);
+                if ($inserted_rows) {
+                    echo "<span class='success'>Post Inserted Successfully.
+                    </span>";
+                }else {
+                    echo "<span class='error'>Post Not Inserted !</span>";
+                }
         }
     }
         
         ?>
         <div class="block">               
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="addpost.php" method="post" enctype="multipart/form-data">
             <table class="form">
                 
                 <tr>

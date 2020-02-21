@@ -1,4 +1,4 @@
-</div>
+
 
 <div class="footersection templete clear">
   <div class="footermenu clear">
