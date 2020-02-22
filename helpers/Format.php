@@ -10,14 +10,24 @@ class Format{
         $text = substr($text, 0, $limit );
         $text = $text.".....";
         return $text;
-       }
+    }
 
-       public function validation($data){
+    public function validation($data){
         $data = trim($data);
         $data = stripcslashes($data);
-        $data = htmlspecialchars($data );
+        $data = htmlspecialchars($data);
         return $data;
-       }
+    }
+    public function title(){
+        $path = $_SERVER['SCRIPT_FILENAME'];
+        $title = basename($path , '.php');
+        if ($title == 'index') {
+            $title ='home';
+        }elseif ($title == 'contact') {
+            $title ='contact';
+        }
+        return $title = ucwords($title);
+    }
 
 }
 

@@ -20,10 +20,10 @@
                 VALUES('$name','$body')";
                 $inserted_rows = $db->insert($query);
                 if ($inserted_rows) {
-                    echo "<span class='success'>Post Inserted Successfully.
+                    echo "<span class='success'>Page Created Successfully.
                     </span>";
                 }else {
-                    echo "<span class='error'>Post Not Inserted !</span>";
+                    echo "<span class='error'>Page Not Crated !</span>";
                 }
         }
     }
@@ -53,7 +53,7 @@
                 <tr>
                     <td></td>
                     <td>
-                        <input type="submit" name="submit" Value="Save" />
+                        <input type="submit" name="submit" Value="Create" />
                     </td>
                 </tr>
             </table>
