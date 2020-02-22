@@ -13,13 +13,23 @@
 <head>
 
 	<?php 
-	if(isset($_GET['pageid'])){
+	   if(isset($_GET['pageid'])){
 		$PageTitle =$_GET['pageid'];
 		$query     ="SELECT * FROM tbl_page WHERE id='$PageTitle' ";
 		$pages  = $db->select($query);
 		if($pages){
 		while($result = $pages->fetch_assoc()){ ?>
-		<title><?php echo $result['name'];?>-<?php echo TITLE;?></title> <?php } } }else{ ?>
+		<title><?php echo $result['name'];?>-<?php echo TITLE;?></title> <?php } } }
+		
+		elseif (isset($_GET['id'])){
+		$PostTitle =$_GET['id'];
+		$query     ="SELECT * FROM tbl_post WHERE id='$PostTitle' ";
+		$posts  = $db->select($query);
+		if($posts){
+		while($result = $posts->fetch_assoc()){ ?>
+		<title><?php echo $result['title'];?>-<?php echo TITLE;?></title> <?php } } } 
+		
+		else{ ?>
 			<title><?php echo $formate->title(); ?> -<?php echo TITLE;?></title>
 		<?php }?>
 	
