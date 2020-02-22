@@ -1,6 +1,7 @@
 
 
 <div class="footersection templete clear">
+
   <div class="footermenu clear">
     <ul>
         <li><a href="#">Home</a></li>
@@ -9,13 +10,32 @@
         <li><a href="#">Privacy</a></li>
     </ul>
   </div>
-  <p>&copy; Copyright Training with live project.</p>
+
+      <?php
+        $query      = "SELECT * FROM tbl_footer WHERE id='1'";
+        $copyright = $db->select( $query);
+        if ($copyright) {
+            while ($result_copyright = $copyright->fetch_assoc()) {
+        ?> 
+  <p>&copy; <?php echo $result_copyright['note']; ?>  <?php echo date('Y');?></p>
+
+            <?php } }?>
 </div>
+
+
 <div class="fixedicon clear">
-    <a href="http://www.facebook.com"><img src="admin/upload/images/fb.png" alt="Facebook"/></a>
-    <a href="http://www.twitter.com"><img src="admin/upload/images/tw.png" alt="Twitter"/></a>
-    <a href="http://www.linkedin.com"><img src="admin/upload/images/in.png" alt="LinkedIn"/></a>
-    <a href="http://www.google.com"><img src="admin/upload/images/gl.png" alt="GooglePlus"/></a>
+<?php
+$query      = "SELECT * FROM   tbl_social WHERE id= 1";
+$social = $db->select( $query);
+if ($social) {
+    while ($result_social = $social->fetch_assoc()) {
+?>    
+
+    <a href="<?php echo $result_social['fb'];?>"><img src="admin/upload/images/fb.png" alt="Facebook"/></a>
+    <a href="<?php echo $result_social['twit'];?>"><img src="admin/upload/images/tw.png" alt="Twitter"/></a>
+    <a href="<?php echo $result_social['link'];?>"><img src="admin/upload/images/in.png" alt="LinkedIn"/></a>
+    <a href="<?php echo $result_social['google'];?>"><img src="admin/upload/images/gl.png" alt="GooglePlus"/></a>
+    <?php } }?>
 </div>
 <script type="text/javascript" src="js/scrolltop.js"></script>
 </body>

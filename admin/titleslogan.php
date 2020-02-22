@@ -60,7 +60,7 @@
         }
     }else{
         $query =" UPDATE title_sllogan
-        SET 
+                SET 
                 slogan ='$slogan',
                 title  ='$title'
                 WHERE id = '1' ";

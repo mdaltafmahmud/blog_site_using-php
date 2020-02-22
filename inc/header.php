@@ -90,13 +90,20 @@ $(window).load(function() {
 				<?php } }  ?>
 		</a>
 		<div class="social clear">
-			<div class="icon clear">
-				<a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-				<a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-				<a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
-				<a href="#" target="_blank"><i class="fa fa-google-plus"></i></a>
-			</div>
+	<div class="icon clear">
 
+	<?php
+	$query      = "SELECT * FROM   tbl_social WHERE id= 1";
+	$social     = $db->select( $query);
+	if ($social) {
+		while ($result_social = $social->fetch_assoc()) {
+	?>   
+		<a href="<?php echo $result_social['fb'];?>" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="<?php echo $result_social['twit'];?>" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="<?php echo $result_social['link'];?>" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="<?php echo $result_social['google'];?>" target="_blank"><i class="fa fa-google-plus"></i></a>
+	</div>
+				<?php } }?>
 
 			<div class="searchbtn clear">
 				<form action="search.php" method="get">
