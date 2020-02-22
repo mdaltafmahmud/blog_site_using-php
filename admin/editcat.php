@@ -6,7 +6,7 @@
     if (!isset($_GET['catid']) || $_GET['catid'] == NULL ) {
         header("Location: catlist.php");
     }else{
-        $catid = $_GET['catid'];
+        $editcatid = $_GET['catid'];
     }
 ?>
 
@@ -24,7 +24,7 @@
         if (empty($name)) {
            echo "<span class='error'>Field Must Not Be Empty !!.</span>";
         } else{
-            $query     = "UPDATE catagory SET name ='$name' WHERE id= '$catid'; ";
+            $query     = "UPDATE catagory SET name ='$name' WHERE id= '$editcatid'; ";
             $catUpdate = $db->update($query);
            if ($catUpdate) {
             echo "<span class='success'>Catagory Updated successfully !!.</span>";
@@ -38,7 +38,7 @@
     ?>
 
     <?php 
-        $query ="SELECT * FROM catagory where id= '$catid' ORDER BY id DESC ";
+        $query ="SELECT * FROM catagory where id= '$editcatid' ORDER BY id DESC ";
         $catagory =$db->select($query);
         while ($result = $catagory->fetch_assoc()) {
     ?>
@@ -53,7 +53,7 @@
             </tr>
             <tr> 
                 <td>
-                    <input type="submit" name="submit" Value="Save" />
+                    <input type="submit" name="submit" Value="Update" />
                 </td>
             </tr>
         </table>

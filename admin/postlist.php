@@ -8,134 +8,47 @@
 			<table class="data display datatable" id="example">
 			<thead>
 				<tr>
-					<th>Post Title</th>
-					<th>Description</th>
-					<th>Category</th>
-					<th>Image</th>
-					<th>Action</th>
+					<th  width="5%">NO</th>
+					<th  width="15%">Post Title</th>
+					<th  width="24%">Description</th>
+					<th  width="8%">Catagory</th>
+					<th  width="8%">image </th>
+					<th  width="10%">Author</th>
+					<th  width="10%">tags</th>
+					<th  width="10%">Date</th>
+					<th  width="10%">Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="odd gradeX">
-					<td>Trident</td>
-					<td>Internet Explorer 4.0</td>
-					<td>Win 95+</td>
-					<td class="center"> 4</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="even gradeC">
-					<td>Trident</td>
-					<td>Internet Explorer 5.0</td>
-					<td>Win 95+</td>
-					<td class="center">5</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="odd gradeA">
-					<td>Trident</td>
-					<td>Internet Explorer 5.5</td>
-					<td>Win 95+</td>
-					<td class="center">5.5</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="even gradeA">
-					<td>Trident</td>
-					<td>Internet Explorer 6</td>
-					<td>Win 98+</td>
-					<td class="center">6</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="odd gradeA">
-					<td>Trident</td>
-					<td>Internet Explorer 7</td>
-					<td>Win XP SP2+</td>
-					<td class="center">7</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="even gradeA">
-					<td>Trident</td>
-					<td>AOL browser (AOL desktop)</td>
-					<td>Win XP</td>
-					<td class="center">6</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="gradeA">
-					<td>Gecko</td>
-					<td>Firefox 1.0</td>
-					<td>Win 98+ / OSX.2+</td>
-					<td class="center">1.7</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="gradeA">
-					<td>Gecko</td>
-					<td>Firefox 1.5</td>
-					<td>Win 98+ / OSX.2+</td>
-					<td class="center">1.8</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="gradeA">
-					<td>Gecko</td>
-					<td>Firefox 2.0</td>
-					<td>Win 98+ / OSX.2+</td>
-					<td class="center">1.8</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="gradeA">
-					<td>Gecko</td>
-					<td>Firefox 3.0</td>
-					<td>Win 2k+ / OSX.3+</td>
-					<td class="center">1.9</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="gradeA">
-					<td>Gecko</td>
-					<td>Camino 1.0</td>
-					<td>OSX.2+</td>
-					<td class="center">1.8</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				
-				<tr class="gradeX">
-					<td>Misc</td>
-					<td>Dillo 0.8</td>
-					<td>Embedded devices</td>
-					<td class="center">-</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="gradeX">
-					<td>Misc</td>
-					<td>Links</td>
-					<td>Text only</td>
-					<td class="center">-</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="gradeX">
-					<td>Misc</td>
-					<td>Lynx</td>
-					<td>Text only</td>
-					<td class="center">-</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="gradeC">
-					<td>Misc</td>
-					<td>IE Mobile</td>
-					<td>Windows Mobile 6</td>
-					<td class="center">-</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="gradeC">
-					<td>Misc</td>
-					<td>PSP browser</td>
-					<td>PSP</td>
-					<td class="center">-</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
-				<tr class="gradeU">
-					<td>Other browsers</td>
-					<td>All others</td>
-					<td>-</td>
-					<td class="center">-</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
-				</tr>
+		<?php 
+		$query ="SELECT tbl_post.*,catagory.name FROM tbl_post 
+		left JOIN catagory
+		ON tbl_post.cat = catagory.id
+		ORDER BY tbl_post.title DESC";
+		$post = $db->select($query);
+		if ($post) {
+			$i=0;
+			while ($result = $post->fetch_assoc()) {
+				$i++;
+		?>
+		<tr class="odd gradeX">
+			<td><?php echo $i;?></td>
+			<td><a href="editpost.php?editpostid=<?php echo $result['id'];?>"><?php echo $result['title'];?></a></td>
+			<td><?php echo $formate->textshorten($result['body'],60);?></td>
+			<td><?php echo $result['name'];?></td>
+			<td><img  src="<?php echo $result['image'];?>"height="40px" width="60px"></td>
+			<td><?php echo $result['author'];?></td>
+			<td><?php echo $result['tags'];?></td>
+			<td><?php echo $formate->formatDate($result['date']);?></td>
+			
+			<td>
+			<a href="editpost.php?editpostid=<?php echo $result['id'];?>">Edit</a> 
+			||
+			<a onclick="return confirm('Are you sure to Delete this!!');" 
+			href="deletepost.php?delpostid=<?php echo $result['id'];?>">Delete</a>
+			</td>
+		</tr>
+				<?php } }?>
 			</tbody>
 		</table>
 

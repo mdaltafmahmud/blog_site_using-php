@@ -22,7 +22,7 @@ if (!isset($_GET['id']) || $_GET['id']==NULL ) {
 			
 		<h2><a><?php echo $result_post['title'];?></a></h2>
 		<h4><?php echo $formate->formatDate($result_post['date']);?><a href="#"><?php echo $result_post['author'];?></a></h4>
-		<a href="#"><img src="admin/upload/images/<?php echo  $result_post['image']; ?>"/></a>
+		<a href="#"><img src="admin/<?php echo  $result_post['image']; ?>"/></a>
 		<?php echo $formate->textshorten($result_post['body']);?>
 
 			<?php
@@ -34,7 +34,7 @@ if (!isset($_GET['id']) || $_GET['id']==NULL ) {
 						<div class="relatedpost clear">
 							<h2><?php echo $relted_post['title']; ?></h2>
 							<a href="post.php?id=<?php echo $relted_post['id'];?>">
-							<img src="admin/upload/images/<?php echo  $relted_post['image']; ?>"/></a>
+							<img src="admin/<?php echo  $relted_post['image']; ?>"/></a>
 						</div>
 					<?php } }else{echo "No Related Post are Available";}?>
 			    <?php  }} else{ header("Location:404.php");}?>
