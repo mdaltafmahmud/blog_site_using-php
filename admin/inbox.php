@@ -59,7 +59,21 @@
             </div>
 
 			<div class="box round first grid">
-                <h2>Seen </h2>
+                <h2>Seen Message </h2>
+     <?php
+	 if (isset($_GET['delid'])) {
+		$delid =$_GET['delid'];
+		$delquery = "DELETE FROM tbl_contact WHERE id = '$delid' ";
+        $delData  = $db->delete($delquery);
+        if ($delData) {
+            echo "<script> alert('Message Deleted successfully'); </script>";
+           
+        }else{
+            echo "<script> alert('Message Not Deleted '); </script>";
+          
+		}
+	}
+		?>
                 <div class="block">        
 				<table class="data display datatable" id="example">
 					<thead>
@@ -89,6 +103,7 @@
 							<td><?php echo $formate->textshorten($result['body'],30);?></td>
 							<td><?php echo $formate->formatDate($result['date']);?></td>
 							<td>
+							<a href="viewMsg.php?msgid=<?php echo $result['id'];?>"> View</a> ||
 							<a onclick="return confirm('Are You Sure To Delete !')" href="?delid=<?php echo $result['id'];?>"> Delete</a>
 							
 							</td>
