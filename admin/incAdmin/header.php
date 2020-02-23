@@ -80,7 +80,7 @@
         ?>
         <div class="floatleft marginleft10">
             <ul class="inline-ul floatleft">
-                <li>Hello Admin</li>
+                <li>Hello <?php echo Session::get('username');?></li>
                 <li><a href="?action=logout">Logout</a></li>
             </ul>
         </div>
