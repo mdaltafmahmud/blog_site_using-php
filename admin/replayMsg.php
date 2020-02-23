@@ -14,7 +14,18 @@
 
         <?php 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           // echo "<script>window.Location ='inbox.php'; </script>";
+           
+           $to         = $formate->validation($_POST['toemail']);
+           $from       = $formate->validation($_POST['fromemail']);
+           $subject    = $formate->validation($_POST['subject']);
+           $message    = $formate->validation($_POST['message']);
+           $sendmsg    = mail($to,$subject,$message,$from);
+           if ($sendmsg ) {
+               echo "<span class='success'> Message Sent Sucessfully...</span>";
+           }else{
+            echo "<span class='error'> Something Went Wrong...</span>";
+           }
+
        }
         
  ?>
@@ -29,32 +40,33 @@
 				?>
             <table class="form">
         <form method="POST" id="msgsubmit" action="">
+             
                 <tr>
+                    <td><label>To</label></td>
                     <td>
-                        <label>NAME</label>
-                    </td>
-                    <td>
-                       <input type="text"  value="<?php echo $result['firstname'].' '. $result['lastname']?>" class="medium"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Email</label></td>
-                    <td>
-                        <input type="text"  value="<?php echo $result['email'];?>" class="medium"/>
+                        <input type="text" readonly name="toemail" value="<?php echo $result['email'];?>" class="medium"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label>Date</label>
+                        <label>From</label>
                     </td>
                     <td>
-                        <input type="text" value="<?php echo $formate->formatDate($result['date']);?>" class="medium"/>
+                        <input type="text" name="fromemail" placholder="Please Enter Your Email Address.." class="medium"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Subject</label>
+                    </td>
+                    <td>
+                        <input type="text" name="subject" placholder="Please Enter Your Email Address.." class="medium"/>
                     </td>
                 </tr>
                 <tr> 
                     <td><label>Message</label> </td>
                     <td>
-                    <textarea  class="tinymce"> 
+                    <textarea  class="tinymce" name="message"> 
                             <?php echo $result['body'];?>
                     </textarea>
                     </td>
@@ -63,7 +75,7 @@
                 <tr>
                     <td></td>
                     <td>
-                        <input type="submit" name="submit" Value="Ok" />
+                        <input type="submit" name="submit" Value="Send" />
                     </td>
                 </tr>
             </table>
