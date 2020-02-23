@@ -93,6 +93,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<form>				
  </div>
 
+	
+		
 		</div>
 		<?php include 'inc/sidebar.php'; ?>
+		</div>
 		<?php include 'inc/footer.php'; ?>

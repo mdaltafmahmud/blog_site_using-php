@@ -35,6 +35,20 @@
 	
 	<meta name="language" content="English">
 	<meta name="description" content="It is a website about education">
+
+	<?php 
+		if(isset($_GET['id'])){
+			$keywordId = $_GET['id'];
+			$query     ="SELECT * FROM tbl_post WHERE id='$keywordId' ";
+		    $keyword   = $db->select($query);
+			 if ($keyword) {
+				 while ($result = $keyword->fetch_assoc()) { ?>
+	 	    <meta name="keywords" content="<?php echo $result['tags'];?>">
+		<?php } } }else{ ?> 
+			<meta name="keywords" content="<?php echo KEYWORDS;?>"> 
+	<?php  }?>	
+	
+	
 	<meta name="keywords" content="blog,cms blog">
 	<meta name="author" content="Altaf Mahmud">
 	<link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.css">	

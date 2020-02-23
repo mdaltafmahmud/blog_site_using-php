@@ -35,6 +35,6 @@
 	    	</div>
 
 					<!-- end here wile loop  condition and wile loop.... -->
-	<?php }}else{ header("Location: 404.php");}?>
+	<?php }}else{ echo "NO Latest Post Available";}?>
 	</div>
 </div>

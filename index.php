@@ -14,24 +14,25 @@
    }
      $start_from = ($page-1) * $per_page;
 
-	$sql         = "SELECT * FROM tbl_post ";
+	$sql         = "SELECT * FROM tbl_post";
 	$result      = $db->select($sql);
-	$total_rows  = mysqli_num_rows($result);
-	$total_pages =ceil($total_rows/$per_page);
-
-// pagination query end.......
-
-		$query = "SELECT * FROM tbl_post limit $start_from, $per_page";
-		$post  =$db->select($query);
-		if ($post) {
-			while ( $result_post =$post->fetch_assoc() ) {
+	$total_rows  = 0;
+	if($result){
+		$total_rows  = mysqli_num_rows($result);
+		$total_pages =ceil($total_rows/$per_page);
+	}
+	// pagination query end.......
+	$query = "SELECT * FROM tbl_post limit $start_from, $per_page";
+	$post  =$db->select($query);
+	if ($post) {
+		while ( $result_post =$post->fetch_assoc() ) {
 				
 	?>
 	
 		<div class="samepost clear">
 			<h2><a href="post.php?id=<?php echo $result_post['id'];?>"><?php echo $result_post['title'];?></a></h2>
 			<h4><?php echo $formate->formatDate($result_post['date']);?>  <a href="#"><?php echo $result_post['author'];?></a></h4>
-				<a href="#"><img src="admin/<?php echo  $result_post['image']; ?>" alt="post image"/></a>
+				<a href="post.php"><img src="admin/<?php echo  $result_post['image']; ?>" alt="post image"/></a>
 				<?php echo $formate->textshorten($result_post['body']);?>
 			<div class="readmore clear">
 				<a href="post.php?id=<?php echo $result_post['id'];?>">Read More</a>
@@ -54,4 +55,5 @@
 </div>
 
  <?php include 'inc/sidebar.php'; ?>
+ </div>
 <?php include 'inc/footer.php'; ?>

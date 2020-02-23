@@ -27,7 +27,7 @@ if (!isset($_GET['id']) || $_GET['id']==NULL ) {
 
 			<?php
 			   $catid        = $result_post['cat'];
-			   $reletedpost  = "SELECT * FROM tbl_post WHERE cat= '$catid' limit 4 ";
+			   $reletedpost  = "SELECT * FROM tbl_post WHERE cat= '$catid' limit 3 ";
 			   $post         = $db->select($reletedpost);
 			   if($post) {
 			   while ($relted_post = $post->fetch_assoc()) {?>
@@ -39,7 +39,9 @@ if (!isset($_GET['id']) || $_GET['id']==NULL ) {
 					<?php } }else{echo "No Related Post are Available";}?>
 			    <?php  }} else{ header("Location:404.php");}?>
 		</div>
-	</div>
 
+</div>
 	<?php include 'inc/sidebar.php'; ?>
+	</div>
+		</div>
 	<?php include 'inc/footer.php'; ?>
