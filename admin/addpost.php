@@ -111,7 +111,7 @@
                         <label>Author</label>
                     </td>
                     <td>
-                    <input type="text" name="author" placeholder="Enter Author Name"></input>
+                    <input readonly type="text" name="author"value ="<?php echo Session::get('username')?>"></input>
                     </td>
                 </tr> <!--  tags options   end here  -->  
                 

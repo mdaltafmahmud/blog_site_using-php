@@ -2,6 +2,15 @@
 
 <?php include 'incAdmin/header.php'; ?>
 <?php include 'incAdmin/sidebar.php'; ?>
+<?php
+    if (!Session::get('userRole')=='0') { 
+        // header("Location:index.php");
+        echo "<script defer> location.href='index.php';</script>";
+      
+    }
+    
+ ?>
+       
 
     <div class="grid_10">
         <div class="box round first grid">
@@ -41,7 +50,7 @@
 ?>
 
 
-        <form action="" method="post">
+        <form action="adduser.php" method="post" id="sentmsg" >
         <table class="form">					
             <tr>
                  <td><label for="">User Name</label></td>
