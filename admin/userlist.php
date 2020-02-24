@@ -63,7 +63,7 @@
 
 
 
-					<td><a href="viewuser.php?catid=<?php echo $result['id'];?>">Edit</a> || 
+					<td><a href="viewuser.php?userid=<?php echo $result['id'];?>">View</a> || 
 					<a onclick="return confirm('Are You Sure To Delete!');" href="?deluser=<?php echo $result['id'];?>">Delete</a> 
 				</tr>
 
