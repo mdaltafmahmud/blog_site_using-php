@@ -14,16 +14,20 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $username = $formate->validation($_POST['username']);
         $password = $formate->validation(md5($_POST['password']));
-        $role     = $formate->validation($_POST['role']);
+        $role     = (int)$formate->validation($_POST['role']);
+        // var_dump($role);
+        // var_dump($username);
+        // var_dump($password);
+        // die();
 
         $username = mysqli_real_escape_string($db->link,$username);
         $password = mysqli_real_escape_string($db->link,$password);
         $role     = mysqli_real_escape_string($db->link,$role);
 
-    if (empty($username)|| empty($password)|| empty($role)) {
+    if ($username == "" || $password == '' || $role == '') {
         echo "<span class='error'>Field Must Not Be Empty !!.</span>";
         }else{
-        $query     ="INSERT INTO user_tbl (username,password,role) VALUES('$username','$password','$role')";
+        $query      ="INSERT INTO user_tbl (username,password,role) VALUES('$username','$password',$role)";
         $userInsert =$db->insert($query);
         if ( $userInsert) {
         echo "<span class='success'>User Created successfully !!.</span>";
@@ -40,25 +44,19 @@
         <form action="" method="post">
         <table class="form">					
             <tr>
-                 <td>
-                   <label for="">User Name</label> 
-                </td>
+                 <td><label for="">User Name</label></td>
                 <td>
                     <input type="text" name="username" placeholder="Enter  Username"/>
                 </td>
             </tr>
             <tr>
-                 <td>
-                   <label for="">Password</label> 
-                </td>
+                 <td><label for="">Password</label></td>
                 <td>
                     <input type="text" name="password" placeholder="Enter  Password"/>
                 </td>
             </tr>
             <tr>
-                 <td>
-                   <label for="">User Role</label> 
-                </td>
+                <td><label for="">User Role</label></td>
                 <td>
                   <select name="role" id="select"> 
                       <option> Select User Role</option>
