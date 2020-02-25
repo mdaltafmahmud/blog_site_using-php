@@ -20,6 +20,7 @@
            $body       = mysqli_real_escape_string($db->link, $_POST['body' ]);
            $tags       = mysqli_real_escape_string($db->link, $_POST['tags' ]);
            $author     = mysqli_real_escape_string($db->link, $_POST['author']);
+           $userid     = mysqli_real_escape_string($db->link, $_POST['userid']);
 
            $permited  = array('jpg', 'jpeg', 'png', 'gif');
            $file_name = $_FILES['image']['name'];
@@ -51,7 +52,8 @@
                 body   ='$body',
                 image  ='$uploaded_image',
                 author ='$author',
-                tags   ='$tags'
+                tags   ='$tags',
+                userid ='userid'
                 WHERE id ='$editpostid'";
                 $updated_rows = $db->update($query);
 
@@ -69,7 +71,8 @@
         title    ='$title',
         body     ='$body',
         author   ='$author',
-        tags     ='$tags'
+        tags     ='$tags',
+        userid   ='userid'
         WHERE id ='$editpostid'";
         $updated_rows = $db->update($query);
 
@@ -169,6 +172,9 @@
                     </td>
                     <td>
                     <input value="<?php echo  $resultpost['author'];?>" name="author" placeholder="Enter Author Name"></input>
+                    </td>
+                    <td>
+                    <input readonly type="hidden" name="userid"value ="<?php echo Session::get('userId')?>"></input>
                     </td>
                 </tr> <!--  tags options   end here  -->  
                 

@@ -13,6 +13,7 @@
            $body       = mysqli_real_escape_string($db->link, $_POST['body' ]);
            $tags       = mysqli_real_escape_string($db->link, $_POST['tags' ]);
            $author     = mysqli_real_escape_string($db->link, $_POST['author']);
+           $userid     = mysqli_real_escape_string($db->link, $_POST['userid']);
 
            $permited  = array('jpg', 'jpeg', 'png', 'gif');
            $file_name = $_FILES['image']['name'];
@@ -33,8 +34,8 @@
             echo "<span class='error'>You can upload only:-".implode(', ', $permited)."</span>";
            } else{
                 move_uploaded_file($file_temp,$uploaded_image);
-                $query = "INSERT INTO tbl_post (cat,title,body,image,author,tags)
-                VALUES($catgory,'$title','$body','$uploaded_image','$author','$tags')";
+                $query = "INSERT INTO tbl_post (cat,title,body,image,author,tags,userid)
+                VALUES($catgory,'$title','$body','$uploaded_image','$author','$tags','$userid')";
                 $inserted_rows = $db->insert($query);
                 if ($inserted_rows) {
                     echo "<span class='success'>Post Inserted Successfully.
@@ -112,6 +113,9 @@
                     </td>
                     <td>
                     <input readonly type="text" name="author"value ="<?php echo Session::get('username')?>"></input>
+                    </td>
+                    <td>
+                    <input readonly type="hidden" name="userid"value ="<?php echo Session::get('userId')?>"></input>
                     </td>
                 </tr> <!--  tags options   end here  -->  
                 
